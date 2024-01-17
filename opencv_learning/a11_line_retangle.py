@@ -7,6 +7,9 @@ def main():
     )
     con = True
     var = 1
+    text = "My name is Catholic Universe"
+    org = (50, 100)
+    font = cv2.FONT_HERSHEY_SIMPLEX
     while con:
         ret, frame = cap.read()
         # get width
@@ -17,10 +20,15 @@ def main():
         # pt1 = (100, 100)
         # pt2 = (200, 200)
         var += 0.1
-        if var == 20:
-            var = 10
+        if var > 20:
+            var = 1
         if ret:
             cv2.line(frame, pt1, pt2, (0, 0, 255), 3)
+            cv2.rectangle(frame, pt1, pt2, (0, 255, 0), 3)
+            cv2.rectangle(frame, (0, 0, 500, 500), (255, 0, 0), 5)
+            cv2.circle(frame, pt2, 10, (255, 255, 0), 3)
+            cv2.circle(frame, pt1, 10, (0, 0, 255), 3)
+            cv2.putText(frame, text, pt1, font, 1, (255, 255, 255), 2, cv2.LINE_AA)
             cv2.imshow("frame", frame)
         if cv2.waitKey(1) == ord("q"):
             con = False
